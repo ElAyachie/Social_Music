@@ -1,0 +1,6 @@
+{
+    "getAllArtistData": "SELECT * FROM artist_interests",
+    "getAllArtistInterestsByUserID": "SELECT * FROM artist_interests WHERE UserID = ?",
+    "addNewArtistInterest" : "INSERT INTO artist_interests (UserID, ArtistID, ArtistName, ArtistPic) VALUES (?,?,?,?)",
+    "deleteArtistInterestForUser": "DELETE FROM artist_interests WHERE UserID = ? AND ArtistID = ?"
+}

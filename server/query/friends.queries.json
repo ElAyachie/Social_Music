@@ -1,0 +1,5 @@
+{
+    "getAllFriends": "SELECT f.FriendID, u.Username, u.Name, p.PostID, p.PostText FROM user_information u LEFT JOIN friends f ON u.UserID = f.FriendID LEFT JOIN posts p ON p.UserID = f.FriendID WHERE f.UserID = ? AND p.PostID IS NOT NULL",
+    "addNewFriend" : "INSERT INTO Friends (UserID, FriendID) VALUES (?,?)",
+    "deleteFriend": "DELETE FROM Friends WHERE UserID = ? AND FriendID = ?"
+}   
