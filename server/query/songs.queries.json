@@ -1,0 +1,6 @@
+{
+    "getAllSongData": "SELECT * FROM song_interests",
+    "getAllSongInterestsByUserID": "SELECT * FROM song_interests WHERE UserID = ?",
+    "addNewSongInterest" : "INSERT INTO song_interests (UserID, SongName, SongLink, ArtistID, ArtistName, AlbumID, AlbumPic) VALUES (?,?,?,?,?,?,?)",
+    "deleteSongInterestForUser": "DELETE FROM song_interests WHERE UserID = ? AND SongName = ?"
+}

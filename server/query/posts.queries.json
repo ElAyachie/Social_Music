@@ -1,0 +1,6 @@
+{
+    "getPosts": "SELECT s.* FROM (SELECT f.FriendID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes FROM user_information u LEFT JOIN friends f ON u.UserID = f.FriendID LEFT JOIN posts p ON p.UserID = f.FriendID WHERE f.UserID = ? AND p.PostID IS NOT NULL UNION ALL SELECT u.UserID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes FROM user_information u LEFT JOIN posts p ON p.UserID = u.UserID WHERE u.UserID = ? AND p.PostID IS NOT NULL) s ORDER BY s.PostID DESC",
+    "getUsersPosts": "SELECT p.PostID, p.PostText, u.UserID, u.Username, u.Name, p.PostLikes FROM Posts p LEFT JOIN user_information u on p.UserID = u.UserID WHERE u.UserID = ? ORDER BY p.PostID DESC",
+    "addPost": "INSERT INTO Posts (PostText, UserID) VALUES (?,?)",
+    "addLikeToPost": "UPDATE p SET p.PostLikes = p.PostLikes + 1 FROM Posts p WHERE p.PostID = ?"
+}

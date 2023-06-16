@@ -1,0 +1,87 @@
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.post-section {
+    position: relative;
+    background-color: gray;
+    margin-left: 10px;
+    color: black;
+    padding-top: 10px;
+  
+    
+
+    .poster {
+        font-size: 2.1rem;
+        font-weight: 600;
+        display: inline-block;
+        position: absolute;
+        top: 20px;
+        left: 100px;
+    }
+    
+    .picture {
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 15px;
+    }
+    
+    .time-posted {
+        position: absolute;
+        right: 5px;
+        top: 0;
+        font-family: Oswald;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 21px;
+        color: #434343;
+    }
+    
+    .post {
+        font-size: 1.3rem;
+        text-align: left;
+        font-weight: 400;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .upvote-icon {
+        cursor: pointer;
+        text-align: left;
+        margin-right: 30%;
+        margin-bottom: 30px;
+        margin-top: 35px;
+    }
+    
+    .comment-icon {
+        cursor: pointer;
+        margin-bottom: 30px;
+        margin-top: 35px;
+    }
+    
+    .comment-section {
+        position: relative;
+        background-color: #C7C7C7;
+    }
+
+    .comment-section {
+        background-color: #808080;
+    }
+}
+
+.individual-comment {
+    background-color: #E8E8E8;
+    border-bottom: 2px solid #C7C7C7;
+    padding-top: 10px;
+
+    .time-posted {
+        font-size: 13px;
+    }
+
+    .poster {
+        font-size: 1.9rem;
+    }
+}

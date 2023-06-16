@@ -1,0 +1,6 @@
+{
+    "getComments": "SELECT f.FriendID, u.Username, u.Name, p.PostID, c.CommentText, c.CommentID, c.CommentLikes FROM user_information u LEFT JOIN friends f ON u.UserID = f.FriendID LEFT JOIN posts p ON p.UserID = f.FriendID LEFT JOIN comments c ON c.PostID = p.PostID WHERE f.UserID = ? and c.CommentID IS NOT NULL",
+    "getUsersComments": "SELECT * FROM Comments WHERE UserID = ?",
+    "getCommentsForPost": "SELECT * FROM Comments WHERE PostID = ?",
+    "addComment": "INSERT INTO Comments (PostID, CommentText, UserID) VALUES (?,?,?)"
+}

@@ -1,0 +1,6 @@
+{
+    "getAllAlbumData": "SELECT * FROM album_interests",
+    "getAllAlbumInterestsByUserID": "SELECT * FROM album_interests WHERE UserID = ?",
+    "addNewAlbumInterest" : "INSERT INTO album_interests (UserID, AlbumID, AlbumName, AlbumPic, ArtistID, ArtistName) VALUES (?,?,?,?,?,?)",
+    "deleteAlbumInterestForUser": "DELETE FROM album_interests WHERE UserID = ? AND AlbumID = ?"
+}

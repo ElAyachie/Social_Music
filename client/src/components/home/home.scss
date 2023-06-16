@@ -1,0 +1,192 @@
+#home {
+    display: block;
+    min-height: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0px;
+    padding-bottom: 30px;
+
+    .feed-header {
+        display: flex;
+        justify-content: center;
+    }
+
+    .feed-title {
+        padding-right: 30px;
+    }
+
+    .like-button-area {
+        display: flex;
+        align-self: center;
+        margin-bottom: 0px;
+    }
+
+    .home-organization {
+        display: inline-flex;
+        width: 1431px;
+    }
+
+    .left-panel-home {
+        padding-right: 20px;
+        width: 50%;
+    }
+
+    .right-panel-home {
+        width: 60%;
+    }
+
+    .profile-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 2px solid purple;
+        border-radius: 32px;
+        background-color: white;
+        width: 1433px;
+        height: 60px;
+    }
+
+    .pro-pic {
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
+    }
+
+    .play-music-btn {
+        background-color: white;
+        border: 1px solid purple;
+        border-radius: 12px;
+    }
+
+    .new-post-btn {
+        background-color: white;
+        border: 1px solid purple;
+        border-radius: 12px;
+    }
+
+    .feed-expand {
+        height: 30px;
+    };
+
+    .feed-space {
+        position: relative;
+        padding: 10px;
+        margin-top: 1rem;
+        border: 2px solid purple;
+        border-radius: 24px;
+        background-color: white;
+    }
+
+    .feed-space-content {
+        overflow-y: auto;
+        height: 800px;
+    }
+
+    .music-space {
+        position: relative;
+        padding: 10px;
+        margin-top: 1rem;
+        border: 2px solid purple;
+        border-radius: 24px;
+        background-color: white;
+        height: 433px;
+    }
+
+    .music-space-content {
+        overflow-y: auto;
+        height: 500px;
+    }
+
+    .friend-space {
+        padding: 10px;
+        position: relative;
+        margin-top: 1rem;
+        border: 2px solid purple;
+        border-radius: 24px;
+        background-color: white;
+        width: 632px;
+        height: 433px;
+    }
+
+    .friend-space-content {
+        justify-content: center;
+        overflow-y: auto;
+        height: 500px;
+    }
+
+    .expand-icon-btn {
+        border: none;
+        background: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    .friends-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: 356px;
+        padding: 10px;
+        overflow-y: scroll;
+    }
+
+    .friend {
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid black;
+        background-color: rgb(231, 231, 231);
+        width: 520px;
+        height: 65px;
+        text-align: left;    
+        display: flex;
+        margin-bottom: 5px;    
+
+        .name {
+            display: inline-block;
+            font-size: 1rem;
+            margin-top: 5px;
+            width: 400px;
+        }
+
+        .picture {
+            margin-top: 5px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .name-picture {
+            align-self: center;
+            padding-left: 10px;
+        }
+
+        .upvote-icon {
+            font-size: 50px;
+            background: none;
+            color: rgb(50, 245, 50);
+            cursor: pointer;
+            text-align: right;
+            flex-grow: 1;
+            align-self: center;
+            border: 0;
+        }
+    } 
+
+    .expand-icon {
+        width: 25px;
+    }
+
+    .music-section .sub-sections {
+        height: 253px;
+        width: 100%;
+    }
+
+    .friends-section {
+        height: 350px
+    }
+}
