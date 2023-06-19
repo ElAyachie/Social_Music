@@ -3,12 +3,10 @@ import "./home.scss";
 
 import ExpandIcon from '../../assets/expand-icon.png'
 
-import Feed from './feed';
-import UserMusic from '../profiles/UserMusic';
-import AddFriends from '../profiles/AddFriends';
-import NewPost from './NewPost';
+import HomeFeed from '../home-feed/HomeFeed';
+import UserMusic from '../music/UserMusic';
+import AddFriends from '../home-users/AddFriends';
 import getImageByKey from '../profiles/getImageByKey';
-
 
 // Home page - displays the posts, music interests, and users list in different sections.
 export default class Home extends Component {
@@ -18,8 +16,7 @@ export default class Home extends Component {
         this.expandFeedSection = this.expandFeedSection.bind(this);
         this.expandMusicSection = this.expandMusicSection.bind(this);
         this.expandFriendSection = this.expandFriendSection.bind(this);
-
-
+        
         this.state = {
             user: JSON.parse(localStorage.getItem("user"))
         }
@@ -69,7 +66,6 @@ export default class Home extends Component {
                         <h5>@{this.state.user.Username}</h5>
                         <button className="play-music-btn">Play My Music</button>
                     </div>
-                    <NewPost />
                     <div className='home-organization' style={{ "width": "1440px !important" }}>
                         <div className='left-panel-home'>
                             <div className="music-space">
@@ -96,16 +92,13 @@ export default class Home extends Component {
                             </div>
                         </div>
                         <div id="feed-space right-panel" className="right-panel-home feed-space">
-                            <div className="feed-expand">
-                                <button className="expand-icon-btn" onClick={this.expandFeedSection}>
-                                    <img src={ExpandIcon} className="expand-icon" alt="Expand Icon" />
-                                </button>
-                            </div>
-                            <div id="feed-space-content" className="feed-space-content">
-                                <Feed />
-                            </div>
+                            <button className="expand-icon-btn" onClick={this.expandFeedSection}>
+                                <img src={ExpandIcon} className="expand-icon" alt="Expand Icon" />
+                            </button>
+                        <div id="feed-space-content" className="feed-space-content">
+                            <HomeFeed />
+                        </div> 
                         </div>
-
                     </div>
                 </div>
             </div>

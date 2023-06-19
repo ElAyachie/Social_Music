@@ -11,10 +11,6 @@ const LoginController = () => {
         loginPage.push(<LoginScreen appContext={this} />);
     }
 
-    /*useEffect(() => {
-        setLoginPage(loginPage)
-    }, [loginPage]);*/
-
     return (
         <div className="loginController">
             {loginPage}

@@ -1,3 +1,34 @@
 .profile {
     margin-top: 100px;
 }
+
+.feed-title {
+    padding-right: 10px;
+}
+
+.feed-header {
+    display: flex;
+    justify-content: center;
+}
+
+.new-post-btn {
+    background-color: white;
+    border: 1px solid purple;
+    border-radius: 12px;
+}
+
+.feed-space {
+    position: relative;
+    padding: 10px;
+    margin-top: 1rem;
+    border: 2px solid purple;
+    border-radius: 24px;
+    background-color: white;
+    padding-top: 32px;
+}
+
+.like-button-area {
+    display: flex;
+    align-self: center;
+    margin-bottom: 0px;
+}

@@ -1,0 +1,111 @@
+.feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .feed-expand {
+        height: 30px;
+    };
+
+    .feed-space {
+        position: relative;
+        padding: 10px;
+        margin-top: 1rem;
+        border: 2px solid purple;
+        border-radius: 24px;
+        background-color: white;
+        padding-top: 32px;
+    }
+
+    .feed-space-content {
+        overflow-y: auto;
+        height: 800px;
+    }
+
+    .post {
+        margin: 20px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 1px solid purple;
+        border-radius: 32px;
+    }
+
+    .comment {
+        margin-top: 10px;
+        margin-left: 10%;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid purple;
+        border-radius: 32px;
+        margin-bottom: 10px;
+
+        .commentDataBox {
+            padding-left: 15%;
+            padding-right: 5%;
+            width: 100%;
+        }
+        
+        .commentData {
+            text-align: left;
+        }    
+    }
+    
+    .userInfo {
+        margin-top: 10px;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    
+    .profileImg {
+        width: 8%;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+    
+    .user {
+        padding-left: 10px;
+        align-self: center;
+    }
+
+    .postDataBox {
+        padding-left: 15%;
+        padding-right: 5%;
+        width: 100%;
+    }
+    
+    .postData {
+        text-align: left;
+        font-size: large;
+    }
+    
+    .icons {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .icon {
+        margin: 10px;
+        background: none;
+        width: 25px;
+        height: 25px;
+    }
+
+    .like-button {
+        margin-bottom: 0px;
+        margin-left: 0px;
+        align-self: center;
+        background: none;
+        border: none;
+    }
+
+    .commentBtn {
+        background: none;
+        border: none;
+    }
+}
