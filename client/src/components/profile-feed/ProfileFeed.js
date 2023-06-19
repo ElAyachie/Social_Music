@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Post from '../post'
+import Post from '../post/Post'
 import NewPostPopup from '../post/NewPostPopup';
 import NewCommentPopup from '../comment/NewCommentPopup';
 import api from '../../config/api';
