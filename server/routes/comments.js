@@ -4,7 +4,6 @@ module.exports = (app, db) => {
     app.get('/api/comments/get', (req, res) => {
         const UserID = req.query.UserID;
         db.query(query.getComments, [UserID], (error, result) => {
-            //console.log(result);
             if(error) {
                 console.log("Error on insert", error);
                 res.send({
@@ -21,13 +20,10 @@ module.exports = (app, db) => {
             }
         });
     });
-  
-    app.post('/api/comments/insert', (req, res) => {
-        const PostID = req.body.postID;
-        const Comment = req.body.comment;
-        const UserID = 4;
-        db.query(query.addComment, [PostID, Comment, UserID], (error, result) => {
-            //console.log(result);
+
+    app.get('/api/comments/profile/get', (req, res) => {
+        const UserID = req.query.UserID;
+        db.query(query.getCommentsForUsersPosts, [UserID], (error, result) => {
             if(error) {
                 console.log("Error on insert", error);
                 res.send({
@@ -38,7 +34,49 @@ module.exports = (app, db) => {
             else {
                 res.send({
                   "code": 200,
-                  "success": "comment added successfully"
+                  "success": "comments got successfully",
+                  "comments": result
+                });
+            }
+        });
+    });
+
+    app.get('/api/comments/likes/update', (req, res) => {
+        const CommentID = req.query.CommentID;
+        db.query(query.addLikeToComment, [CommentID], (error, result) => {
+            if(error) {
+                console.log("Error on update", error);
+                res.send({
+                  "code": 400,
+                  "failed": "error occured"
+                });
+            }
+            else {
+                res.send({
+                  "code": 200,
+                  "success": "comment updated successfully"
+                });
+            }
+        });
+    });
+  
+    app.post('/api/comments/insert', (req, res) => {
+        const PostID = req.body.PostID;
+        const UserID = req.body.UserID;
+        const CommentText = req.body.CommentText;
+        db.query(query.addComment, [PostID, UserID, CommentText], (error, result) => {
+            if(error) {
+                console.log("Error on insert", error);
+                res.send({
+                  "code": 400,
+                  "failed": "error occured"
+                });
+            }
+            else {
+                res.send({
+                  "code": 200,
+                  "success": "comment added successfully",
+                  "comments": result
                 });
             }
         });

@@ -1,11 +1,22 @@
-.post {
-    margin: 20px;
-    width: 90%;
+.comment {
+    margin-top: 10px;
+    margin-left: 10%;
+    width: 75%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border: 1px solid purple;
     border-radius: 32px;
+    margin-bottom: 10px;
+
+    .commentDataBox {
+        padding-left: 15%;
+        padding-right: 5%;
+        width: 100%;
+    }
+    
+    .commentData {
+        text-align: left;
+    }    
 }
 
 .userInfo {
@@ -27,17 +38,6 @@
     align-self: center;
 }
 
-.postDataBox {
-    padding-left: 15%;
-    padding-right: 5%;
-    width: 100%;
-}
-
-.postData {
-    text-align: left;
-    font-size: large;
-}
-
 .icons {
     display: flex;
     justify-content: space-evenly;
@@ -48,4 +48,17 @@
     background: none;
     width: 25px;
     height: 25px;
+}
+
+.like-button {
+    margin-bottom: 0px;
+    margin-left: 0px;
+    align-self: center;
+    background: none;
+    border: none;
+}
+
+.commentBtn {
+    background: none;
+    border: none;
 }

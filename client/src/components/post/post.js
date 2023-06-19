@@ -1,32 +1,123 @@
-import React from 'react';
-import "./post.scss";
-import Comment from "./comment"
-import Profile_1 from "../../assets/profile_1_pic.jfif"
-import Upvote_Icon from "../../assets/upvote.svg"
-import Comment_Icon from "../../assets/comment.svg"
-import blankProfileImg from '../../assets/blankUser.jpg';
+import React, { useState } from 'react';
+import './post.scss';
+import favoriteIcon from '../../assets/note.png';
+import commentIcon from '../../assets/comment.png';
+import axios from 'axios';
+import api from '../../config/api';
+import Comment from '../comment/Comment'
 
-// Structure for a post.
-function Post() {
+import getImageByKey from '../profiles/getImageByKey';
+
+function closeComment() {
+    // Get the modal
+    var modal = document.getElementById("new-comment");
+    
+    modal.style.display = "none";
+}
+
+// Design for each individual post.
+function Post(props) {
+    const [post, setPost] = useState(props.post);
+    const [comments, setComments] = useState(props.comments);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const UserID = user.UserID;
+
+    function openComment() {
+        // Get the comment
+        var comment = document.getElementById("new-comment");
+    
+        // Get the <span> element that closes the comment
+        var commentClose = document.getElementsByClassName("comment-close")[0];
+    
+        comment.style.display = "block";
+
+        commentClose.onclick = function() {
+            comment.style.display = "none";
+        }
+
+        comment.dataset.postid = post.PostID;
+    
+        // When the user clicks anywhere outside of the comment, close it
+        window.onclick = function(e) {
+            if (e.target === comment) {
+                comment.style.display = "none";
+            }
+        }
+
+        comment.onsubmit = function(e) {
+            e.preventDefault();
+            handleNewComment(e);
+        }
+    }
+
+    const handlePostLike = async e =>  {
+        e.preventDefault();
+        await axios.get(api.base_url + "/posts/likes/update", {
+                params: {
+                    PostID: post.PostID
+                }
+            })
+            .then(function(response) {
+                // Add to the local storage
+                setPost({ ...post, PostLikes: post.PostLikes + 1 });
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        };
+
+    const handleNewComment = async e => {
+        e.preventDefault();
+        const PostID = parseInt(post.PostID);
+        const CommentText = e.target[0].value;
+        const newComment = {
+            PostID: PostID,
+            UserID: UserID,
+            CommentText: CommentText
+        }
+        await axios.post(api.base_url + "/comments/insert", newComment)
+            .then(function(response) {
+                const newComment = response.data.comments[0][0];
+                setComments(oldComments => [newComment, ...oldComments]);
+                closeComment();
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
 
     return (
-        <div className="post-section">
-            <div className="flex-container">
-                <img className="picture" src={blankProfileImg} width="65px" height="65px" alt="Profile Pic"></img>
-                <h1 className="poster">John Smith</h1>
+        <div className="post">
+            <div id={post.PostID}>
+                <div className="userInfo">
+                    <img className="picture profileImg" src={getImageByKey(post.Username)} width="45px" height="45px" alt="Profile pic"></img>
+                    <br />
+                    <h4 className="user">{"@" + post.Username}</h4>
+                </div>
+                <br />
+                <div className="postDataBox">
+                    <p className="postData">{post.PostText}</p>
+                </div>
+                <br />
+                <div className="icons">
+                    <div className="like-button-area">
+                        <button className='like-button' data-postid={post.PostID} onClick={handlePostLike} >
+                            <img src={favoriteIcon} alt="Favorite icon" data-postid={post.PostID} className="icon like-button"/>
+                        </button>
+                        <p className="icon like-button">{post.PostLikes}</p>
+                    </div>
+                    <button onClick={openComment} data-postid={post.PostID} className="commentBtn">
+                        <img src={commentIcon} alt="Comment icon" className="icon" />
+                    </button>
+                </div>
+                <div className='comments'>
+                    {comments.map((comment) =>
+                        <Comment comment={comment} post={post} key={comment.CommentID}/>
+                    )}
+                </div>
             </div>
-            <h4 className="time-posted">Posted at 1:05 PM 3/24</h4>
-            <h3 className="post">Quisque imperdiet tellus eget ex tempor,
-                eget feugiat metus vestibulum. Curabitur sapien
-                quam, sollicitudin sed auctor vel, ornare eu
-                mauris. Donec malesuada placerat scelerisque.
-            </h3> 
-            <img className="upvote-icon" src={Upvote_Icon} width="40px" height="40px" alt="Upvote"></img>
-            <img className="comment-icon" src={Comment_Icon} width="40px" height="40px" alt="Comment"></img>
-            <Comment />
-            <Comment />
         </div>
-    )
+    );
 }
 
 export default Post;

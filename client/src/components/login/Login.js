@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "./login.scss";
 
-import LoadMusicInterests from '../search/LoadMusicInterests';
-import LoadFriendsList from '../profiles/LoadFriendsList';
-import LoadUsersList from '../profiles/LoadUsersList';
-import LoadPostsList from '../profiles/LoadPostsList';
-import LoadCommentsList from '../profiles/LoadCommentsList';
-
+import LoadMusicInterests from '../../services/local_data/LoadMusicInterests';
+import LoadFriendsList from '../../services/local_data/LoadFriendsList';
+import LoadUsersList from '../../services/local_data/LoadUsersList';
 
 import api from '../../config/api';
 
@@ -53,8 +49,6 @@ function Login() {
                     LoadUsersList();
                     LoadMusicInterests();
                     LoadFriendsList();
-                    LoadPostsList();
-                    LoadCommentsList();
                     
                     sleep(1000).then(() => {
                         window.location.reload();

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './profile.scss';
-import UserProfile from "../profiles/UserProfile"
+import UserProfile from "./UserProfile"
 
 export default class Profile extends Component {
     constructor(props) {
