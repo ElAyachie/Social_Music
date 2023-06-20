@@ -6,7 +6,8 @@
     flex-direction: column;
     border: 1px solid purple;
     border-radius: 32px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 5px;
 
     .commentDataBox {
         padding-left: 15%;
@@ -16,6 +17,7 @@
     
     .commentData {
         text-align: left;
+        margin-bottom: 0px;
     }    
 }
 
@@ -28,14 +30,16 @@
 }
 
 .profileImg {
-    width: 8%;
     border: 1px solid black;
     border-radius: 50%;
+    height: 4%;
+    width: 6%;
 }
 
 .user {
     padding-left: 10px;
     align-self: center;
+    font-size: 1.1rem;
 }
 
 .icons {

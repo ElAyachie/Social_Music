@@ -75,6 +75,9 @@ function ProfileFeed() {
         var post = document.getElementById("new-post");
 
         post.style.display = "block";
+
+        var textarea = document.getElementsByClassName("textarea-post")[0];
+        textarea.value = "";
         
         // Get the <span> element that closes the post
         var postClose = document.getElementsByClassName("post-close");

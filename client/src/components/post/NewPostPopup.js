@@ -4,7 +4,7 @@ import './NewPost.scss';
 function closePost() {
     // Get the modal
     var modal = document.getElementById("new-post");
-    
+
     modal.style.display = "none";
 }
 
@@ -21,7 +21,7 @@ function NewPostPopup(props) {
                 <div className="post-space">
                     <form onSubmit={props.newPost}>
                         <textarea
-                        className="form-control"
+                        className="form-control textarea-post"
                         type="text"
                         autoComplete="on"
                         id="postText"

@@ -14,37 +14,20 @@ import PrivateRoute from './components/routes/PrivateRoute';
 //import UserProfile from './components/profiles/UserProfile';
 
 function App() {
-  const [authed, setAuthed] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState();
-
-  useEffect(() => {
-    setLoggedInUser(localStorage.getItem("user"));
-    if(loggedInUser) {
-        setAuthed(true);
-    }
-    else {
-      setAuthed(false);
-    }
-  }, [loggedInUser, setAuthed]);
-
   return (
     <Router>
       <div className="App">
-        <script src="http://localhost:8097"></script>
-        <header className="">``
+        <header className="">
           <Header />
         </header>
-        <Route path="/">
-          <Redirect to="/welcome" />
-        </Route>
         <Route path="/login">
             <LoginController />
         </Route>
         <Switch>
           <Route path="/welcome" exact component={ Welcome } />
-          <PrivateRoute authed={authed} path="/home" component={ Home } />
-          <PrivateRoute authed={authed} path="/search" component={ Search } />
-          <PrivateRoute authed={authed} path="/profile" component={ Profile } />
+          <PrivateRoute path="/home" component={ Home } />
+          <PrivateRoute path="/search" component={ Search } />
+          <PrivateRoute path="/profile" component={ Profile } />
         </Switch>
       </div>
     </Router>

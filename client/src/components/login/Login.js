@@ -8,10 +8,6 @@ import LoadUsersList from '../../services/local_data/LoadUsersList';
 import api from '../../config/api';
 
 // User login
-// User will load in their music interests and friends list into local storage if the information exists.
-const sleep = ms =>
-  new Promise(resolve => setTimeout(resolve, ms));
-
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -43,22 +39,17 @@ function Login() {
                     };
                     setUser(response.data.email);
                     localStorage.setItem("user", JSON.stringify(userData));
-
-                    // Loads in user information.
                     
                     LoadUsersList();
                     LoadMusicInterests();
                     LoadFriendsList();
                     
-                    sleep(1000).then(() => {
-                        window.location.reload();
-                        window.location = "/search";
-                    });
+                    window.location.reload();
+                    window.location = "/home";
                 }
                 else if(response.data.code === 204) {
                     console.log("email or Password do not match our records.");
                     alert("email or Password do not match our records.");
-                    window.location.reload();
                 }
                 else {
                     console.log("email does not exist.");

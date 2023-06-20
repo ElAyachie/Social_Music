@@ -19,7 +19,6 @@ function SearchMusic() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.data);
       // Index the search result array so that we can reference the values.
       let indexedData = data.data;
       indexedData.forEach((item, i) => {
@@ -37,7 +36,6 @@ function SearchMusic() {
   
   return (
     <div>
-      {console.log(musicResults)}
       <SearchBar onSearch={searchMusic} />
       {
         ( loading ? (
