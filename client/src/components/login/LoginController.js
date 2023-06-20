@@ -9,6 +9,7 @@ const LoginController = () => {
     if (loginPage.length === 0)
     {
         loginPage.push(<LoginScreen appContext={this} />);
+        console.log("test");
     }
 
     return (

@@ -29,6 +29,9 @@ function Post(props) {
         // Get the <span> element that closes the comment
         var commentClose = document.getElementsByClassName("comment-close")[0];
     
+        var textarea = document.getElementsByClassName("textarea-comment")[0];
+        textarea.value = "";
+
         comment.style.display = "block";
 
         commentClose.onclick = function() {

@@ -23,15 +23,27 @@ export default class Home extends Component {
     }
 
     expandFeedSection() {
+        
         //var section = document.getElementById("feed-space");
-        var content = document.getElementById("feed-space-content");
+        var feedSpace = document.getElementsByClassName("feed-space")[0];
+        var musicSpace = document.getElementsByClassName("music-space")[0];
+        var friendSpace = document.getElementsByClassName("friend-space")[0];
+        var homeOrganization = document.getElementsByClassName("home-organization")[0]; 
 
-        if (content.style.height === "1000px") {
-            content.style.height = "500px";
+        // if the feed is already enlarged
+        if (feedSpace.style.width === "1432px") {
+            feedSpace.style.width = "100%";
+            musicSpace.style.display = "block";
+            friendSpace.style.display = "block";
+            homeOrganization.style.display = "inline-flex";
         }
+        // if the feed is not already enlarged
         else {
-            content.style.height = "1000px";
-        }
+            feedSpace.style.width = "1432px";
+            musicSpace.style.display = "none";
+            friendSpace.style.display = "none";
+            homeOrganization.style.display = "block";
+        }   
     }
 
     expandMusicSection() {

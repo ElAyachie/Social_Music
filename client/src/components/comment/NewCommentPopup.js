@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './NewComment.scss';
-
-import api from '../../config/api';
 
 function closeComment() {
     // Get the modal
@@ -24,7 +21,7 @@ function NewCommentPopup() {
                 <div className="comment-space">
                     <form>
                         <textarea
-                        className="form-control"
+                        className="form-control textarea-comment"
                         type="text"
                         autoComplete="on"
                         id="commentText"
