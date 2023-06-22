@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoadMusicInterests from '../../services/local_data/LoadMusicInterests';
 import LoadFriendsList from '../../services/local_data/LoadFriendsList';
 import LoadUsersList from '../../services/local_data/LoadUsersList';
+import getImage from '../profiles/getImage';
 
 import api from '../../config/api';
 
@@ -35,8 +36,10 @@ function Login() {
                         Email: response.data.email,
                         Username: response.data.username,
                         Name: response.data.name,
-                        Bio: response.data.bio
+                        Bio: response.data.bio,
+                        ProfileImage: getImage(response.data.profileImage)
                     };
+
                     setUser(response.data.email);
                     localStorage.setItem("user", JSON.stringify(userData));
                     

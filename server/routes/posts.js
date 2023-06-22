@@ -3,7 +3,7 @@ module.exports = (app, db) => {
 
     app.get('/api/posts/get', (req, res) => {
         const UserID = req.query.UserID;
-        db.query(query.getPosts, [UserID, UserID], (error, result) => {
+        db.query(query.getPosts, [UserID], (error, result) => {
             if(error) {
                 console.log("Error on insert", error);
                 res.send({

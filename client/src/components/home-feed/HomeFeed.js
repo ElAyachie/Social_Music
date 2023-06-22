@@ -19,6 +19,7 @@ function HomeFeed() {
     const [comments, setComments] = useState([]);
     const user = JSON.parse(localStorage.getItem("user"));
     const UserID = user.UserID;
+    const users = JSON.parse(localStorage.getItem("users"));
     
     useEffect(() => {
         const getPosts  = async e  =>  {
@@ -105,7 +106,7 @@ function HomeFeed() {
                 <NewCommentPopup />
                 <NewPostPopup newPost={handleNewPost}/>    
                 {posts.map((post) =>
-                    <Post post={post} comments={comments.filter(v => v.PostID === post.PostID)} key={post.PostID}/>
+                    <Post post={post} postUser={users.filter(x => x.UserID === post.FriendID)[0]} comments={comments.filter(v => v.PostID === post.PostID)} key={post.PostID}/>
                 )}
             </div>
         </div>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './comment.scss';
 import favoriteIcon from '../../assets/note.png';
-import getImageByKey from '../profiles/getImageByKey';
 import axios from 'axios';
 import api from '../../config/api';
 
 // Design for each idividual Comment.
 function Comment(props) {
     const [comment, setComment] = useState(props.comment);
+    const [commentUser] = useState(props.commentUser);
 
     const handleCommentLike = async e =>  {
         await axios.get(api.base_url + "/comments/likes/update", {
@@ -26,7 +26,7 @@ function Comment(props) {
     return (
         <div className="comment" id={comment.key}>
             <div className="userInfo">
-                <img src={getImageByKey(comment.Username)} alt="User Profile" className="profileImg" />
+                <img src={commentUser.ProfileImage} alt="User Profile" className="profileImg" />
                 <br />
                 <h4 className="user">{"@" + comment.Username}</h4>
             </div>

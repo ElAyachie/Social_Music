@@ -1,10 +1,9 @@
 import api from '../../config/api';
 import axios from 'axios';
-
+import getImage from '../../components/profiles/getImage';
 
 // Loads in all the users the user has in the database and displays them on the profile page.
 function LoadUsersList() {
-
     // Using the UserID from the local storage the server queries the database for all the user's friends on the database.
     const getUsers  = async e  =>  {
         await axios.get(api.base_url + '/users/get')
@@ -16,7 +15,8 @@ function LoadUsersList() {
                         dataObject = {
                             UserID: response.data.users[i].UserID,
                             Username: response.data.users[i].Username,
-                            Name: response.data.users[i].Name
+                            Name: response.data.users[i].Name,
+                            ProfileImage: getImage(response.data.users[i].ProfileImage)
                         };
                         usersList.push(dataObject);
                     }

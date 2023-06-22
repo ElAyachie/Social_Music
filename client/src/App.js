@@ -24,6 +24,7 @@ function App() {
             <LoginController />
         </Route>
         <Switch>
+          <Route path="/" exact component={ Welcome } />
           <Route path="/welcome" exact component={ Welcome } />
           <PrivateRoute path="/home" component={ Home } />
           <PrivateRoute path="/search" component={ Search } />

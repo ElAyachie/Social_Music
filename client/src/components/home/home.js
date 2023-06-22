@@ -6,7 +6,6 @@ import ExpandIcon from '../../assets/expand-icon.png'
 import HomeFeed from '../home-feed/HomeFeed';
 import UserMusic from '../music/UserMusic';
 import AddFriends from '../home-users/AddFriends';
-import getImageByKey from '../profiles/getImageByKey';
 
 // Home page - displays the posts, music interests, and users list in different sections.
 export default class Home extends Component {
@@ -73,7 +72,7 @@ export default class Home extends Component {
             <div >
                 <div id="home" className="container">
                     <div className="profile-bar sticky-top">
-                        <img src={getImageByKey(this.state.user.Username)} className="pro-pic" alt="profile pic"></img>
+                        <img src={this.state.user.ProfileImage} className="pro-pic" alt="profile pic"></img>
                         <h5>{this.state.user.Name}</h5>
                         <h5>@{this.state.user.Username}</h5>
                         <button className="play-music-btn">Play My Music</button>

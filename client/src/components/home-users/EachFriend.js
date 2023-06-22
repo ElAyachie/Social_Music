@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import api from '../../config/api';
 import axios from 'axios';
 import "../profiles/profiles.scss";
-import getImageByKey from '../profiles/getImageByKey';
 
 // Each friend entry in the AddFriends component
 function EachFriend() {
@@ -62,7 +61,7 @@ function EachFriend() {
                 (user.UserID !== userID) ? (
                 <div className="friend" key={index}>
                     <div className='name-picture'>
-                        <img className="picture" src={getImageByKey(user.Username)} width="45px" height="45px" alt="Profile pic"></img>
+                        <img className="picture" src={user.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
                         <h4 className="name">{user.Username} - {user.Name}</h4>
                     </div>
                     <button className="upvote-icon" id={index} onClick={addFriend} alt="Upvote" data-userid={user.UserID} data-otherusername={user.Username} data-othername={user.Name}>+</button>

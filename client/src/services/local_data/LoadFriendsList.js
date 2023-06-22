@@ -1,6 +1,6 @@
 import api from '../../config/api';
 import axios from 'axios';
-
+import getImage from '../../components/profiles/getImage';
 
 // Loads in all friends the user has in the database and displays them on the profile page.
 function LoadFriendsList() {
@@ -22,7 +22,8 @@ function LoadFriendsList() {
                         dataObject = {
                             FriendID: response.data.friends[i].FriendID,
                             Username: response.data.friends[i].Username,
-                            Name: response.data.friends[i].Name
+                            Name: response.data.friends[i].Name,
+                            ProfileImage: getImage(response.data.friends[i].ProfileImage)
                         };
                         friendsList.push(dataObject);
                     }
