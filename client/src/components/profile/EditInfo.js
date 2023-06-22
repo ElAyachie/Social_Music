@@ -25,17 +25,13 @@ function EditInfo() {
                 newName: nameText,
                 newBio: bioText
             }
-            closeEditor();
             await axios.patch(api.base_url + "/users/update_info/update", Info)
                 .then(function(response) {
-                    console.log(response.data);
-                    console.log("Profile change successful");
                     user["Bio"] = bioText;
                     user["Name"] = nameText;
                     localStorage.setItem("user", JSON.stringify(user));
                     setBioText(bioText);
                     setNameText(nameText);
-                    closeEditor();
                 })
                 .catch(function(error) {
                     console.log(error);

@@ -40,7 +40,7 @@ function EachFriendProfile() {
                             friends.map((friend, index) => (
                                 <div className="friend" key={index}>
                                     <div className='name-picture'>
-                                        <img className="picture" src={getImageByKey(friend.Username)} width="45px" height="45px" alt="Profile pic"></img>
+                                        <img className="picture" src={friend.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
                                         <h4 className="name">{friend.Username} - {friend.Name}</h4>
                                     </div>
                                     <button className="minus-icon" id={index} onClick={removeFriend} alt="Upvote" data-userid={user.UserID} data-username={user.Username} />

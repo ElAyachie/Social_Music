@@ -2,6 +2,20 @@
     margin-top: 100px;
 }
 
+.profile-picture {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.clickable-image {
+    cursor: pointer;
+}
+
+.image-upload > input
+{
+   display: none;
+}
+
 .feed-title {
     padding-right: 10px;
 }

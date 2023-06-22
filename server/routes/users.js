@@ -34,7 +34,6 @@ module.exports = (app, db) => {
     const name = req.body.name;
     const password = req.body.password;
     db.query(query.addNewUser, [username, email, password, name], (error, result) => {
-      console.log(result);
       if(error) {
         console.log("Error on insert", error);
         res.send({
@@ -70,6 +69,7 @@ module.exports = (app, db) => {
               "username": result[0].Username,
               "name": result[0].Name,
               "bio": result[0].Bio,
+              "profileImage": result[0].ProfileImage,
               "code": 200
             });
           }
@@ -82,7 +82,8 @@ module.exports = (app, db) => {
     const UserID = req.body.userID;
     const Name = req.body.newName;
     const Bio = req.body.newBio;
-    db.query(query.updateUserInfo, [Name, Bio, UserID], (error, result) => {
+    const ProfileImage = req.body.profileImage;
+    db.query(query.updateUserInfo, [UserID, Name, Bio, ProfileImage], (error, result) => {
       console.log(result);
       if(error) {
         console.log("Error on put", error);

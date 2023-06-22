@@ -21,6 +21,7 @@ app.post('/api/login', (req, res) => {
               "username": result[0].Username,
               "name": result[0].Name,
               "bio": result[0].Bio,
+              "profileImage": result[0].ProfileImage,
               "code": 200,
               "success": "Login Successful"
             });

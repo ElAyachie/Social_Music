@@ -6,8 +6,6 @@ import axios from 'axios';
 import api from '../../config/api';
 import Comment from '../comment/Comment'
 
-import getImageByKey from '../profiles/getImageByKey';
-
 function closeComment() {
     // Get the modal
     var modal = document.getElementById("new-comment");
@@ -19,9 +17,11 @@ function closeComment() {
 function Post(props) {
     const [post, setPost] = useState(props.post);
     const [comments, setComments] = useState(props.comments);
+    const [postUser] = useState(props.postUser);
     const user = JSON.parse(localStorage.getItem("user"));
     const UserID = user.UserID;
-
+    const users = JSON.parse(localStorage.getItem("users"));
+    
     function openComment() {
         // Get the comment
         var comment = document.getElementById("new-comment");
@@ -93,7 +93,7 @@ function Post(props) {
         <div className="post">
             <div id={post.PostID}>
                 <div className="userInfo">
-                    <img className="picture profileImg" src={getImageByKey(post.Username)} width="45px" height="45px" alt="Profile pic"></img>
+                    <img className="picture profileImg" id="post-profile-image" src={postUser.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
                     <br />
                     <h4 className="user">{"@" + post.Username}</h4>
                 </div>
@@ -115,7 +115,7 @@ function Post(props) {
                 </div>
                 <div className='comments'>
                     {comments.map((comment) =>
-                        <Comment comment={comment} post={post} key={comment.CommentID}/>
+                        <Comment comment={comment} post={post} commentUser={users.filter(x => x.UserID === comment.FriendID)[0]} key={comment.CommentID}/>
                     )}
                 </div>
             </div>
