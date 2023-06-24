@@ -20,7 +20,6 @@ function LoadUsersList() {
                         };
                         usersList.push(dataObject);
                     }
-                    console.log("User data recieved");
                     localStorage.setItem("users", JSON.stringify(usersList));
                 }
             })

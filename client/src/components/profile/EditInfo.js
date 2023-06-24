@@ -4,13 +4,6 @@ import '../profiles/profiles.scss';
 
 import api from '../../config/api';
 
-function closeEditor() {
-    // Get the modal
-    var editBox = document.getElementById("edit-info");
-    
-    editBox.style.display = "none";
-}
-
 // Modal for edditting user information (in progress)
 function EditInfo() {
     const [user] = useState(JSON.parse(localStorage.getItem("user")));

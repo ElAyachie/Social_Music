@@ -31,7 +31,6 @@ function EachFriend() {
             };
             axios.post(api.base_url + "/users/friends/insert", friend)
                 .then(function(response) {
-                    console.log("Successful insert");
                     // Add to the local storage
                     const dataObject = {
                         FriendID: otherUserID,
@@ -39,7 +38,6 @@ function EachFriend() {
                         Name: otherName
                     };
                     friendList.push(dataObject);
-                    console.log("Friend data recieved");
                     localStorage.setItem("friends", JSON.stringify(friendList));
                 })
                 .catch(function(error) {

@@ -27,7 +27,6 @@ function LoadMusicInterests() {
                         };
                         albumInterests.push(dataObject);
                     }
-                    console.log("Album data recieved");
                     localStorage.setItem("album_interests", JSON.stringify(albumInterests));
                 }
             })
@@ -54,7 +53,6 @@ function LoadMusicInterests() {
                         };
                         artistInterests.push(dataObject);
                     }
-                    console.log("Artist data recieved");
                     localStorage.setItem("artist_interests", JSON.stringify(artistInterests));
                 }
             })
@@ -84,7 +82,6 @@ function LoadMusicInterests() {
                             };
                             songInterests.push(dataObject);
                         }
-                        console.log("Song data recieved");
                         localStorage.setItem("song_interests", JSON.stringify(songInterests));
                     }
                 })

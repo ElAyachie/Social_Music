@@ -4,7 +4,6 @@ module.exports = (app, db) => {
     app.get('/api/users/friends/get', (req, res) => {
       const UserID = req.query.UserID;
       db.query(query.getAllFriends, [UserID], (error, result) => {
-        //console.log(result);
         if(error) {
           console.log("Error on get", error);
           res.send({
@@ -34,7 +33,6 @@ module.exports = (app, db) => {
       const UserID = req.body.UserID;
       const FriendID = req.body.FriendID;
       db.query(query.addNewFriend, [UserID, FriendID], (error, result) => {
-        console.log(result);
         if(error) {
           console.log("Error on insert", error);
           res.send({
@@ -55,7 +53,6 @@ module.exports = (app, db) => {
         const UserID = req.body.UserID;
         const FriendID = req.body.FriendID;
         db.query(query.deleteFriend, [UserID, FriendID], (error, result) => {
-          console.log(result);
           if(error) {
             console.log("Error on delete", error);
             res.send({
