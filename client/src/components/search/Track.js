@@ -39,7 +39,6 @@ const Track = ({ musicResult }) => {
                         ArtistID: musicResult.artist.id
                     };
                     artistInterests.push(dataObject);
-                    console.log("Artist data recieved");
                     localStorage.setItem("artist_interests", JSON.stringify(artistInterests));
                 })
                 .catch(function(error) {
