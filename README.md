@@ -70,7 +70,7 @@ A list of SQL Create scripts can be found in the SocialMusic_CreateScripts.txt f
 #### Deployment
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-## Original repo/Reference
+## Original Repository/Reference
 https://github.com/ElAyachie/Social-Music
 
 ## Original Contributors
