@@ -2,33 +2,30 @@ import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import "../profiles/profiles.scss";
 
-import UserArtists from "./UserArtists";
-import UserTracks from "./UserTracks";
-import UserAlbums from "./UserAlbums";
+import FriendArtists from "./FriendArtists";
+import FriendTracks from "./FriendTracks";
+import FriendAlbums from "./FriendAlbums";
 
 // User Music interests underneath profile information.
-function UserMusic() {
-    const [artistInterests] = useState(JSON.parse(localStorage.getItem("artist_interests")));
-    const [albumInterests] = useState(JSON.parse(localStorage.getItem("album_interests")));
-    const [songInterests] = useState(JSON.parse(localStorage.getItem("song_interests")));
-    const [user] = useState(JSON.parse(localStorage.getItem("user")));
-
+function FriendMusic(props) {
+    const user = props.friendInfo;
+    const UserID = props.UserID;
     return (
         <div className="music-section">
             <Tabs defaultActiveKey="Artists" id="uncontrolled-tab-example">
                 <Tab eventKey="Artists" title="Artists">
                     <div className="artists sub-sections list">
-                        <UserArtists artistInterests={artistInterests} user={user}/>
+                        <FriendArtists UserID={UserID} user={user}/>
                     </div>         
                 </Tab>
                 <Tab eventKey="Albums" title="Albums">
                     <div className="artists sub-sections">
-                        <UserAlbums albumInterests={albumInterests} user={user}/>
+                        <FriendAlbums UserID={UserID} user={user}/>
                     </div>
                 </Tab>
                 <Tab eventKey="Tracks" title="Tracks">
                     <div className="user-tracks sub-sections">
-                        <UserTracks songInterests={songInterests} user={user}/>
+                        <FriendTracks UserID={UserID} user={user}/>
                     </div>
                 </Tab>
             </Tabs>
@@ -36,4 +33,4 @@ function UserMusic() {
     )
 }
 
-export default UserMusic;
+export default FriendMusic;

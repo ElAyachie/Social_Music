@@ -32,11 +32,10 @@ const Track = ({ musicResult }) => {
             };
             axios.post(api.base_url + "/users/artist_interests/insert", newArtist)
                 .then(function(response) {
-                    console.log("Successful insert");
                     // Add to the local storage
                     const dataObject = {
                         ArtistName: musicResult.artist.name,
-                        ArtistPic: musicResult.album.cover,
+                        ArtistPic: musicResult.artist.picture,
                         ArtistID: musicResult.artist.id
                     };
                     artistInterests.push(dataObject);
@@ -74,7 +73,6 @@ const Track = ({ musicResult }) => {
                 AlbumPic: musicResult.album.cover
             })
             .then(function(response) {
-                console.log("Successful insert");
                 // Add to the locale storage
                 let dataObject = {
                     SongName: musicResult.title,
@@ -117,7 +115,6 @@ const Track = ({ musicResult }) => {
                 ArtistName: musicResult.artist.name
             })
             .then(function(response) {
-                console.log("Successful insert");
                 // Add to the locale storage
                 let dataObject = {
                         AlbumName: musicResult.album.title,

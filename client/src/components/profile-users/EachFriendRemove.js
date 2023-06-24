@@ -8,6 +8,7 @@ function EachFriendRemove() {
     const [friends, setFriends] = useState(JSON.parse(localStorage.getItem("friends")));
     const [currentUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [userID] = useState(currentUser.UserID);
+    const users = JSON.parse(localStorage.getItem("users"));
 
     // Removes a friend from local storage and database.
     const removeFriend = async e => {
@@ -36,12 +37,10 @@ function EachFriendRemove() {
         (friends.length !== 0) ? (
             <div>
             { 
-            
             friends.map((friend, index) => (
-                
                 <div className="friend" key={index}>
                     <div className='name-picture'>
-                        <img className="picture" src={friend.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
+                        <img className="picture" src={users.filter(x => x.UserID === friend.FriendID)[0].ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
                         <h4 className="name">{friend.Username} - {friend.Name}</h4>
                     </div>
                     <button className="minus-icon" id={index} onClick={removeFriend} data-friendid={friend.FriendID}/>

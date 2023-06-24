@@ -4,9 +4,9 @@ import "../profiles/profiles.scss";
 import api from '../../config/api';
 
 // Artists tab in the music interests section on the users profile page.
-const Artists = () => {
-    const [artistInterests, setArtistInterests] = useState(JSON.parse(localStorage.getItem("artist_interests")));
-    const [user] = useState(JSON.parse(localStorage.getItem("user")));
+const UserArtists = (props) => {
+    const [artistInterests, setArtistInterests] = useState(props.artistInterests);
+    const [user] = useState(props.user);
     const [userID] = useState(user.UserID);
 
     // Removes the artist interest from local storage and the database.
@@ -37,7 +37,7 @@ const Artists = () => {
             <div>
             { 
             artistInterests.map((artist, index) => (
-                <div className="artist" key={index}>
+                <div className="artist" key={artist.ArtistID}>
                     <div className="jc-cente" style={{display: "flex"}}>
                         <img className="picture" src={artist.ArtistPic} height="65px" width="65px" alt="Artist"></img>
                         <div className="information">
@@ -54,4 +54,4 @@ const Artists = () => {
     );
 }
 
-export default Artists;
+export default UserArtists;

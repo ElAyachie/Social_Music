@@ -4,9 +4,9 @@ import axios from 'axios';
 import "../profiles/profiles.scss";
 
 // Songs tab in the music interests section on the users profile page.
-const UserTracks = () => {
-    const [songInterests, setSongInterests] = useState(JSON.parse(localStorage.getItem("song_interests")));
-    const [user] = useState(JSON.parse(localStorage.getItem("user")));
+const UserTracks = (props) => {
+    const [songInterests, setSongInterests] = useState(props.songInterests);
+    const [user] = useState(props.user);
     const [userID] = useState(user.UserID);
 
     const audioRef = useRef();

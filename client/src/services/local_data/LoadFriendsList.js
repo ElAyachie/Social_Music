@@ -27,7 +27,6 @@ function LoadFriendsList() {
                         };
                         friendsList.push(dataObject);
                     }
-                    console.log("User data recieved");
                     localStorage.setItem("friends", JSON.stringify(friendsList));
                 }
             })

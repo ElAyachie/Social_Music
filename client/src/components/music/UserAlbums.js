@@ -4,9 +4,9 @@ import "../profiles/profiles.scss";
 import api from '../../config/api';
 
 // Albums tab in the music interests section on the users profile page.
-const Albums = () => {
-    const [albumInterests, setAlbumInterests] = useState(JSON.parse(localStorage.getItem("album_interests")));
-    const [user] = useState(JSON.parse(localStorage.getItem("user")));
+const UserAlbums = (props) => {
+    const [albumInterests, setAlbumInterests] = useState(props.albumInterests);
+    const [user] = useState(props.user);
     const [userID] = useState(user.UserID);
 
     // Removes the album interest from local storage and the database.
@@ -37,7 +37,7 @@ const Albums = () => {
             <div>
             { 
             albumInterests.map((album, index) => (
-            <div className="album-card" key={index}>
+            <div className="album-card" key={album.AlbumID}>
                 <div className="jc-cente" style={{display: "flex"}}>
                     <img className="picture" src={album.AlbumPic} alt="Artist"></img>
                     <div className="information">
@@ -54,4 +54,4 @@ const Albums = () => {
           );
       }
 
-export default Albums;
+export default UserAlbums;

@@ -5,6 +5,7 @@ import commentIcon from '../../assets/comment.png';
 import axios from 'axios';
 import api from '../../config/api';
 import Comment from '../comment/Comment'
+import FriendProfilePopup from "../profile/FriendProfilePopup";
 
 function closeComment() {
     // Get the modal
@@ -53,6 +54,20 @@ function Post(props) {
         }
     }
 
+    function openProfile() {
+        // Get the friend profile
+        var friendProfile = document.getElementById("friend-profile-popup" + post.PostID);
+
+        friendProfile.style.display = "block";
+    
+        // When the user clicks anywhere outside of the comment, close it
+        window.onclick = function(e) {
+            if (e.target === friendProfile) {
+                friendProfile.style.display = "none";
+            }
+        }
+    }
+
     const handlePostLike = async e =>  {
         e.preventDefault();
         await axios.get(api.base_url + "/posts/likes/update", {
@@ -81,7 +96,7 @@ function Post(props) {
         await axios.post(api.base_url + "/comments/insert", newComment)
             .then(function(response) {
                 const newComment = response.data.comments[0][0];
-                setComments(oldComments => [newComment, ...oldComments]);
+                setComments(oldComments => [...oldComments, newComment]);
                 closeComment();
             })
             .catch(function(error) {
@@ -93,7 +108,8 @@ function Post(props) {
         <div className="post">
             <div id={post.PostID}>
                 <div className="userInfo">
-                    <img className="picture profileImg" id="post-profile-image" src={postUser.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
+                    <img onClick={openProfile} data-userid={postUser.UserID} className="picture profileImg" id="post-profile-image" src={postUser.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
+                    <FriendProfilePopup UserID={postUser.UserID} PostID={post.PostID} key={post.PostID}/>
                     <br />
                     <h4 className="user">{"@" + post.Username}</h4>
                 </div>

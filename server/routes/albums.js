@@ -3,14 +3,12 @@ module.exports = (app, db) => {
 
       app.get('/api/users/album_interests/get', (req, res) => {
         db.query(query.getAllAlbumData, (error, result) => {
-          console.log(result);
         });
       });
 
       app.get('/api/users/load_albums/get', (req, res) => {
         const UserID = req.query.UserID;
         db.query(query.getAllAlbumInterestsByUserID, [UserID], (error, result) => {
-          //console.log(result);
           if(error) {
             console.log("Error on get", error);
             res.send({
@@ -46,7 +44,6 @@ module.exports = (app, db) => {
         const ArtistID = req.body.ArtistID;
         const ArtistName = req.body.ArtistName;
         db.query(query.addNewAlbumInterest, [UserID, AlbumID, AlbumName, AlbumPic, ArtistID, ArtistName], (error, result) => {
-          console.log(result);
           if(error) {
             console.log("Error on insert", error);
             res.send({
@@ -67,7 +64,6 @@ module.exports = (app, db) => {
         const UserID = req.body.UserID;
         const AlbumID = req.body.AlbumID;
         db.query(query.deleteAlbumInterestForUser, [UserID, AlbumID], (error, result) => {
-          console.log(result);
           if(error) {
             console.log("Error on delete", error);
             res.send({
