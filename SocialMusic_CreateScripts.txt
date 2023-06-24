@@ -1,0 +1,189 @@
+/* Database Create Script: */
+CREATE DATABASE `socialmusic` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+/* Database Table Create Scripts: */
+CREATE TABLE `user_information` (
+  `UserID` int NOT NULL AUTO_INCREMENT,
+  `Username` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Bio` varchar(255) DEFAULT NULL,
+  `ProfileImage` text,
+  PRIMARY KEY (`UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `friends` (
+  `UserID` int NOT NULL,
+  `FriendID` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `posts` (
+  `PostID` int NOT NULL AUTO_INCREMENT,
+  `UserID` int NOT NULL,
+  `PostText` varchar(255) NOT NULL,
+  `PostLikes` int DEFAULT (0),
+  PRIMARY KEY (`PostID`)
+) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `comments` (
+  `CommentID` int NOT NULL AUTO_INCREMENT,
+  `PostID` int NOT NULL,
+  `CommentText` varchar(255) NOT NULL,
+  `UserID` int NOT NULL,
+  `CommentLikes` int DEFAULT (0),
+  PRIMARY KEY (`CommentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `album_interests` (
+  `UserID` int NOT NULL,
+  `AlbumID` int NOT NULL,
+  `AlbumName` varchar(255) NOT NULL,
+  `AlbumPic` varchar(255) DEFAULT NULL,
+  `ArtistID` int NOT NULL,
+  `ArtistName` varchar(255) NOT NULL,
+  KEY `UserID` (`UserID`),
+  CONSTRAINT `album_interests_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user_information` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `artist_interests` (
+  `UserID` int NOT NULL,
+  `ArtistID` int NOT NULL,
+  `ArtistName` varchar(255) NOT NULL,
+  `ArtistPic` varchar(255) DEFAULT NULL,
+  KEY `UserID` (`UserID`),
+  CONSTRAINT `artist_interests_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user_information` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `song_interests` (
+  `UserID` int NOT NULL,
+  `SongName` varchar(255) NOT NULL,
+  `SongLink` varchar(255) NOT NULL,
+  `ArtistID` int NOT NULL,
+  `ArtistName` varchar(255) NOT NULL,
+  `AlbumID` varchar(255) DEFAULT NULL,
+  `AlbumPic` varchar(255) DEFAULT NULL,
+  KEY `UserID` (`UserID`),
+  CONSTRAINT `song_interests_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user_information` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/* Database Stored Procedure Create Scripts: */
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddComment`(
+     IN GivenPostID INT, IN GivenUserID INT, IN GivenCommentText TEXT
+)
+BEGIN
+INSERT INTO comments (PostID, UserID, CommentText) VALUES (GivenPostID,GivenUserID,GivenCommentText); 
+SELECT c.CommentID, c.PostID, u.UserID as FriendID, u.Username, c.CommentText, c.CommentLikes
+FROM comments c
+LEFT JOIN user_information u on u.UserID = c.UserID
+WHERE c.CommentID IS NOT NULL 
+ORDER BY c.CommentID DESC
+LIMIT 1;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPost`(
+    IN GivenUserID INT, IN GivenPostText TEXT
+)
+BEGIN
+INSERT INTO posts (PostText, UserID) VALUES (GivenPostText,GivenUserID); 
+SELECT u.UserID as FriendID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes
+FROM posts p
+LEFT JOIN user_information u on u.UserID = p.UserID
+WHERE p.PostID IS NOT NULL 
+ORDER BY p.PostID DESC
+LIMIT 1;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetComments`(
+    IN GivenUserID INT
+)
+BEGIN
+(SELECT c.CommentID, c.PostID, u.UserID, u.Username, c.CommentText, c.CommentLikes FROM 
+(SELECT f.FriendID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes 
+FROM user_information u 
+LEFT JOIN friends f ON u.UserID = f.FriendID 
+LEFT JOIN posts p ON p.UserID = f.FriendID WHERE f.UserID = GivenUserID AND p.PostID IS NOT NULL 
+UNION ALL 
+SELECT u.UserID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes 
+FROM user_information u 
+LEFT JOIN posts p ON p.UserID = u.UserID 
+WHERE u.UserID = GivenUserID AND p.PostID IS NOT NULL) s 
+LEFT JOIN comments c on c.PostID = s.PostID 
+LEFT JOIN user_information u on u.UserID = c.UserID
+WHERE c.CommentID IS NOT NULL ORDER BY s.PostID);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPosts`(
+    IN GivenUserID INT
+)
+BEGIN
+SELECT s.* FROM (SELECT f.FriendID as UserID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes 
+FROM user_information u 
+LEFT JOIN friends f ON u.UserID = f.FriendID 
+LEFT JOIN posts p ON p.UserID = f.FriendID 
+WHERE f.UserID = GivenUserID AND p.PostID IS NOT NULL 
+UNION ALL 
+SELECT u.UserID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes 
+FROM user_information u 
+LEFT JOIN posts p ON p.UserID = u.UserID 
+WHERE u.UserID = GivenUserID AND p.PostID IS NOT NULL) s 
+ORDER BY s.PostID DESC;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUserComments`(
+    IN GivenUserID INT
+)
+BEGIN
+	SELECT c.CommentID, c.PostID, u2.UserID, u2.Username, u2.ProfileImage, c.CommentText, c.CommentLikes 
+	FROM posts p
+	LEFT JOIN user_information u on p.UserID = u.UserID
+	LEFT JOIN comments c on c.PostID = p.PostID
+	LEFT JOIN user_information u2 on u2.UserID = c.UserID
+	WHERE u.UserID = GivenUserID AND c.CommentID IS NOT NULL
+	ORDER BY CommentID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUserPosts`(
+    IN GivenUserID INT
+)
+BEGIN
+	SELECT p.PostID, p.PostText, u.UserID, u.Username, u.Name, p.PostLikes 
+    FROM posts p 
+    LEFT JOIN user_information u on p.UserID = u.UserID 
+    WHERE u.UserID = GivenUserID
+    ORDER BY p.PostID DESC;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUser`(
+    IN GivenUsername VARCHAR(255), IN GivenEmail VARCHAR(255), IN GivenPassword VARCHAR(255), IN GivenName VARCHAR(255), IN GivenProfileImage LONGBLOB
+)
+BEGIN
+	INSERT INTO user_information (Username, Email, Password, Name, ProfileImage)  VALUES (GivenUsername,GivenEmail,GivenPassword,GivenName,GivenProfileImage);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateUser`(
+    IN GivenUserID INT, IN GivenName VARCHAR(255), IN GivenBio VARCHAR(255), IN GivenProfileImage LONGBLOB
+)
+BEGIN
+	UPDATE user_information SET Name = GivenName, Bio = GivenBio, ProfileImage = GivenProfileImage 
+	WHERE UserID = GivenUserID;
+END$$
+DELIMITER ;
+
+
+
