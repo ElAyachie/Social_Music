@@ -7,7 +7,7 @@ import api from '../../config/api';
 
 // Displays the user's profile information.
 function UserInfo() {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+    const [user] = useState(JSON.parse(localStorage.getItem("user")));
     const UserID = user.UserID;
     const [name, setName] = useState(user.Name);
     const [bio, setBio] = useState(user.Bio);
@@ -64,7 +64,7 @@ function UserInfo() {
         <div className="user-info">
             <div class="image-upload">
                 <label htmlFor="file-input">
-                    <img className="profile-picture clickable-image" id="myimage" src={user.ProfileImage} />
+                    <img className="profile-picture clickable-image" id="myimage" src={user.ProfileImage} alt='' />
                 </label>
 
                 <input id="file-input" type="file" onChange={handleImage}/>

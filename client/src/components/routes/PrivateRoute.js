@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router"
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function PrivateRoute({ component: Component, path, ...rest }) {
     const user = localStorage.getItem("user");

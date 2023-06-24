@@ -36,7 +36,7 @@ const FriendAlbums = (props) => {
                 });
         };
         getAlbumInterests();
-    }, []);
+    }, [props.UserID]);
 
     return (
         <div>

@@ -6,7 +6,6 @@ import axios from 'axios';
 // Artists tab in the music interests section on the users profile page.
 const FriendArtists = (props) => {
     const [artistInterests, setArtistInterests] = useState([]);
-    const [user] = useState(props.user);
 
     useEffect(() => {
         const getArtistInterests = async e => {
@@ -35,7 +34,7 @@ const FriendArtists = (props) => {
                 });
         };
         getArtistInterests();
-    }, []);
+    }, [props.UserID]);
 
     return (
         <div>
