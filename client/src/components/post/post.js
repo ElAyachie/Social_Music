@@ -22,7 +22,7 @@ function Post(props) {
     const user = JSON.parse(localStorage.getItem("user"));
     const UserID = user.UserID;
     const users = JSON.parse(localStorage.getItem("users"));
-    
+
     function openComment() {
         // Get the comment
         var comment = document.getElementById("new-comment");
@@ -109,7 +109,7 @@ function Post(props) {
             <div id={post.PostID}>
                 <div className="userInfo">
                     <img onClick={openProfile} data-userid={postUser.UserID} className="picture profileImg" id="post-profile-image" src={postUser.ProfileImage} width="45px" height="45px" alt="Profile pic"></img>
-                    <FriendProfilePopup UserID={postUser.UserID} PostID={post.PostID} key={post.PostID}/>
+                    <FriendProfilePopup UserID={post.UserID} PostID={post.PostID} key={post.PostID}/>
                     <br />
                     <h4 className="user">{"@" + post.Username}</h4>
                 </div>
@@ -131,7 +131,7 @@ function Post(props) {
                 </div>
                 <div className='comments'>
                     {comments.map((comment) =>
-                        <Comment comment={comment} post={post} commentUser={users.filter(x => x.UserID === comment.FriendID)[0]} key={comment.CommentID}/>
+                        <Comment comment={comment} post={post} commentUser={users.filter(x => x.UserID === comment.UserID)[0]} key={comment.CommentID}/>
                     )}
                 </div>
             </div>

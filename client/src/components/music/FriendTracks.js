@@ -7,7 +7,6 @@ import axios from 'axios';
 const FriendTracks = (props) => {
     const [songInterests, setSongInterests] = useState([]);
 
-
     useEffect(() => {
         const getSongInterests = async e => {
             await axios.get(api.base_url + '/users/load_songs/get', {
@@ -38,7 +37,7 @@ const FriendTracks = (props) => {
                 });
         };
         getSongInterests();
-    }, []);
+    }, [props.UserID]);
 
     const audioRef = useRef();
 

@@ -50,7 +50,7 @@ function HomeFeed() {
             })
         }
         getComments();
-    }, []);
+    }, [UserID]);
     
     const handleNewPost = async e => {
         e.preventDefault();
@@ -106,7 +106,7 @@ function HomeFeed() {
                 <NewCommentPopup />
                 <NewPostPopup newPost={handleNewPost}/>    
                 {posts.map((post) =>
-                    <Post post={post} postUser={users.filter(x => x.UserID === post.FriendID)[0]} comments={comments.filter(v => v.PostID === post.PostID)} key={post.PostID}/>
+                    <Post post={post} postUser={users.filter(x => x.UserID === post.UserID)[0]} comments={comments.filter(v => v.PostID === post.PostID)} key={post.PostID}/>
                 )}
             </div>
         </div>

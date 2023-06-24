@@ -50,7 +50,7 @@ function ProfileFeed() {
             })
         }
         getComments();
-    }, []);
+    }, [UserID]);
     
     const handleNewPost = async e => {
         e.preventDefault();

@@ -6,7 +6,7 @@ import FriendMusic from '../music/FriendMusic';
 
 // Show a friend profile popup.
 function FriendProfilePopup(props) {
-    const userID = props.UserID;
+    const [userID] = useState(props.UserID);
     const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function FriendProfilePopup(props) {
                 })
                 .then(function(response) {
                     if (response.data.code === 200) {
-                        setUserInfo(response.data.user[0]);
+                        setUserInfo(response.data.user);
                     }
                 })
                 .catch(function(error) {
@@ -26,13 +26,13 @@ function FriendProfilePopup(props) {
                 });
         };
         getUserInfo();
-    }, []);
+    }, [userID]);
 
     return(
         <div id={"friend-profile-popup" + props.PostID} className={"friend-profile-popup"}>
             <div className="friend-profile-content">
             <div>
-                <img className="profile-picture clickable-image" id="myimage" src={userInfo.ProfileImage} />
+                <img className="profile-picture clickable-image" id="myimage" src={userInfo.ProfileImage} alt=''/>
             </div>
             <div className="name-block">
                 <p className="name">@{userInfo.Username}</p>
