@@ -31,7 +31,6 @@ const FriendTracks = (props) => {
                             songInterests.push(dataObject);
                         }
                         setSongInterests(songInterests);
-                        console.log(songInterests);
                     }
                 })
                 .catch(function(error) {
