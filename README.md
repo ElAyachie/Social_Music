@@ -68,10 +68,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 A list of SQL Create scripts can be found in the SocialMusic_CreateScripts.txt file in the main file directory.
 
 #### Deployment
-
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-## Contributors
+## Original repo/Reference
+https://github.com/ElAyachie/Social-Music
+
+## Original Contributors
 - Mohamed Oulal, oulalm@wit.edu, Team Lead, Full stack
 - Fabio Marcellus, marcellusf@wit.edu, Front End
 - Zachary Johnson, johnsonz3@wit.edu, Full stack
