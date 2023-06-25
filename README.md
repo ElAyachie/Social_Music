@@ -29,6 +29,9 @@ List all the functions with their sub functions of your application.
     - Posting
     - Commenting
 
+## Demo Video
+https://youtu.be/C-qhJMVK16A
+
 ## Getting Started
 ### Installation and Setup
 The command scripts below will explain how to start the project.
