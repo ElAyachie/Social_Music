@@ -74,7 +74,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `AddComment`(
 )
 BEGIN
 INSERT INTO comments (PostID, UserID, CommentText) VALUES (GivenPostID,GivenUserID,GivenCommentText); 
-SELECT c.CommentID, c.PostID, u.UserID as FriendID, u.Username, c.CommentText, c.CommentLikes
+SELECT c.CommentID, c.PostID, u.UserID, u.Username, c.CommentText, c.CommentLikes
 FROM comments c
 LEFT JOIN user_information u on u.UserID = c.UserID
 WHERE c.CommentID IS NOT NULL 
@@ -89,7 +89,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `AddPost`(
 )
 BEGIN
 INSERT INTO posts (PostText, UserID) VALUES (GivenPostText,GivenUserID); 
-SELECT u.UserID as FriendID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes
+SELECT u.UserID, u.Username, u.Name, p.PostID, p.PostText, p.PostLikes
 FROM posts p
 LEFT JOIN user_information u on u.UserID = p.UserID
 WHERE p.PostID IS NOT NULL 
