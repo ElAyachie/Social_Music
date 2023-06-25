@@ -46,7 +46,7 @@ const UserTracks = (props) => {
                     <div className="jc-cente" style={{display: "flex"}}>
                         <img className="picture" src={song.AlbumPic} height="65px" width="65px" alt="Artist"></img>
                         <div className="information">
-                            <h2 className="name">{song.SongName} - {song.SongName}</h2>
+                            <h2 className="name">{song.SongName} - {song.ArtistName}</h2>
                             <audio className="audio" controls ref={audioRef}>
                                 <source src={song.SongLink} type="audio/mpeg"/>
                                 Your browser does not support the audio tag.
